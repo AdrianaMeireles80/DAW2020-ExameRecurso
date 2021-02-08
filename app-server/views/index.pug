@@ -1,0 +1,33 @@
+extends layout
+
+block content
+  .w3-container.w3-margin
+    table.w3-table-all
+      tr
+        th id
+        th Team
+        th Pitch1
+        th Pitch2
+        th techPitch
+        th businessReport 
+        th techReport 
+        th members
+        th Apagar
+      each t in dados
+        tr
+          th
+            a(href='/equipa/'+t._id)= t._id
+          th=t.team
+            
+          th=t.pitch1
+          th=t.pitch2 
+          th=t.techPitch
+          th=t.businessReport
+          th=t.techReport 
+          th=t.members
+          th 
+            form(method='POST' action=`/equipa/${t._id}`)
+              input(type='submit' value='Apagar' style="background-color:#e60000; color: white")
+
+      form(method='GET' action='/equipaForm')
+              input(type='submit' value='Adicionar' style="background-color:#e60000; color: white")

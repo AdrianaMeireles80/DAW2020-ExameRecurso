@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<pr>
+    <meta>
+        <key>DAW2020:Recurso</key>
+        <title>Recurso DAW 2021</title>
+        <bdate>2021-02-08</bdate>
+        <edate>2021-02-08</edate>
+        <supervisor url="http://www.di.uminho.pt/~jcr">
+            José Carlos Ramalho
+        </supervisor>
+    </meta>
+    <team>
+        <member id="A82582">
+            <name>Adriana Meireles</name>
+            <email>a82582@alunos.uminho.pt</email>
+            <link url="https://github.com/AdrianaMeireles80" />
+        </member>
+    </team>
+    <abstract>
+        <p>
+
+           1. Foram importados os dados para o MongoDB: mongoimport -d PEI2020 -c teams --jsonArray PEI-teams.json
+        </p>
+        <p>
+        As respostas às pergunta 2 encontram-se no ficheiro resultados.txt
+        </p>
+        <p>
+            Para executar a aplicação desenvolvida, basta simplesmente executar o MongoDB, e depois abrir 2 terminais e nas respetivas pastas 
+            correr o comandos "npm run devstar"
+        </p>
+      
+    </abstract>
+    <deliverables>
+        <link url="api-server/"> Servidor da API de dados </link>
+        <link url="app-server/"> Servidor da interface </link>
+        <link url="PR.xml/"> Project Record </link>
+    </deliverables>
+</pr>

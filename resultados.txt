@@ -1,0 +1,154 @@
+//Quantas equipes existem na base de dados? (resultado = inteiro)
+db.teams.find().count()
+resultado: 87
+
+
+//Quais as equipes? (lista com os nomes das equipes ordenada alfabeticamente)
+db.teams.distinct("team").sort()
+resultado: [
+        "ACCUPHARM",
+        "ANARCO",
+        "AQUASSEUR",
+        "ARCTIQ",
+        "ATGEN",
+        "BOSTONIC",
+        "CEMENTION",
+        "CHILLIUM",
+        "COLAIRE",
+        "COMCUBINE",
+        "COMSTRUCT",
+        "CORECOM",
+        "CYTREX",
+        "DADABASE",
+        "DATAGEN",
+        "DIGINETIC",
+        "DOGNOST",
+        "EARGO",
+        "EARTHPURE",
+        "ENDIPIN",
+        "EQUICOM",
+        "ERSUM",
+        "EVENTEX",
+        "EVENTIX",
+        "EXOPLODE",
+        "EXOZENT",
+        "EXTRAWEAR",
+        "EZENT",
+        "FITCORE",
+        "FLUMBO",
+        "FOSSIEL",
+        "FURNIGEER",
+        "GEEKETRON",
+        "GEEKKO",
+        "GLEAMINK",
+        "GROK",
+        "GUSHKOOL",
+        "HOTCAKES",
+        "HYDROCOM",
+        "HYPLEX",
+        "IDEALIS",
+        "INEAR",
+        "IRACK",
+        "ISBOL",
+        "ISOTERNIA",
+        "KONGENE",
+        "LIMOZEN",
+        "MARKETOID",
+        "MIRACLIS",
+        "NETERIA",
+        "NEWCUBE",
+        "NEXGENE",
+        "NIPAZ",
+        "ONTAGENE",
+        "ORBALIX",
+        "PHEAST",
+        "PLUTORQUE",
+        "PORTALINE",
+        "PROSELY",
+        "PROXSOFT",
+        "REALMO",
+        "RECRISYS",
+        "REVERSUS",
+        "RUBADUB",
+        "RUGSTARS",
+        "SHOPABOUT",
+        "SQUISH",
+        "STEELTAB",
+        "TELEPARK",
+        "TRANSLINK",
+        "TRI@TRIBALOG",
+        "UTARA",
+        "VELITY",
+        "VERTON",
+        "XELEGYL",
+        "XPLOR",
+        "XUMONK",
+        "YOGASM",
+        "ZAPHIRE",
+        "ZAYA",
+        "ZBOO",
+        "ZEAM",
+        "ZENTIME",
+        "ZIALACTIC",
+        "ZILLACOM",
+        "ZOGAK",
+        "ZOLAREX"
+]
+
+//Quantos alunos existem catalogados na base de dados? (resultado = inteiro)
+db.teams.aggregate([
+                    {"$unwind": "$members"},
+                    {"$group": {
+                        _id: "",
+                        "numAlunos": {"$sum":1}}
+                    },
+                    {"$project": {
+                        _id: 0,
+                        "numAlunos": 1}
+                    }
+])
+
+resultado: { "numAlunos" : 822 }
+
+//Quais os alunos? (lista de pares com os números de identificação e nomes dos alunos ordenada alfabeticamente por nome)
+db.teams.aggregate([
+                    {"$unwind": "$members"},
+                    {"$project": {
+                        _id: 0,
+                        "numero": "$members.id",
+                        "nome": "$members.name"}
+                    }
+])
+
+
+//Quantos alunos do MIEI existem catalogados na base de dados? (resultado = inteiro)
+db.teams.aggregate([
+                    {"$unwind": "$members"},
+                    {"$match": {"members.course": "MIEI"}},
+                    {"$group": {
+                        _id: "",
+                        "numerodeAlunos": {"$sum":1}}
+                    },
+                    {"$project": {
+                        _id: 0,
+                        "numerodeAlunos": 1}
+                    }
+])
+resultado: { "numerodeAlunos" : 420 }
+
+
+
+//Quantos membros tem cada equipe? (resultado = lista de pares, nome da equipe e número de elementos na equipe, ordenada alfabeticamente por nome da equipe )
+db.teams.aggregate([
+                    {"$unwind": "$members"},
+                    {"$group": {
+                        _id: "$team",
+                        "numerodeAlunos": {"$sum":1}}
+                    },
+                    {"$project": {
+                        _id: 0,
+                        "team": "$_id",
+                        "numerodeAlunos": 1}
+                    },
+                    { $sort : { "team" : 1 } }
+])

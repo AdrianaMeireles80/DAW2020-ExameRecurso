@@ -1,0 +1,37 @@
+extends layout
+
+block content
+    header.w3-container.w3-margin
+        h1 #{lista._id}
+
+
+        div 
+            b Team: 
+            | #{lista.team}
+
+        div
+        b 
+          
+        each f in lista.members
+        
+            ul
+                li  
+                    b Id:  
+                    |#{f._id}
+
+                li  
+                    b Nome:
+                    |#{f.name}
+          
+                li 
+                    b Cursos: 
+                    | #{f.course}
+
+                li  
+                    b Score: 
+                    |#{f.scores}
+
+    footer.w3-container
+        address.w3-right
+            a(href="/") 
+                button.w3-button.w3-margin Voltar

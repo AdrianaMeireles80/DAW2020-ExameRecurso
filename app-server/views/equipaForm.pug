@@ -1,0 +1,42 @@
+extends layout
+
+block content
+    center
+        .w3-container.w3-margin.w3-center(style="height:350px;width:40%;margin:auto;")
+            .w3-card-4.w3-white.w3-border.w3-border-lime
+                header.w3-container.w3-margin-top
+                    .w3-lime
+                        h3 
+                            b Inserir Novo Recurso
+                    .w3-container
+                        form.w3-container(action='/equipaForm' method="POST")
+                                    
+                            label
+                                b Designação da Lista
+                                input.w3-input.w3-border(type="text", name="designacao")
+
+                            label
+                                b Data
+                                input.w3-input.w3-border(type="text", name="data")
+
+                            label
+                                b Designação do Produto
+                                input.w3-input.w3-border(type="text", name="produtosdesignacao" required)
+                            label
+                                b Categoria do Produto
+                                input.w3-input.w3-border(type="text", name="produtoscategoria" required)
+                            label
+                                b  Quantidade a comprar
+                                input.w3-input.w3-border(type="number", step="1", name="produtosquantidadevalor" required)
+                            label
+                                b Unidade de quantidade
+                                input.w3-input.w3-border(type="text", name="produtosquantidadeunidade" required)                          
+                 
+
+                            input.w3-btn.w3-lime.w3-border.w3-margin.w3-lime(type="submit", value="Inserir")
+                            input.w3-btn.w3-lime.w3-border.w3-margin.w3-lime(type="reset", value="Limpar valores")
+
+                footer.w3-container
+                    address.w3-right
+                        a(href="/") 
+                            button.w3-button.w3-margin Voltar
