@@ -27,7 +27,7 @@
         </p>
         <p>
             Para executar a aplicação desenvolvida, basta simplesmente executar o MongoDB, e depois abrir 2 terminais e nas respetivas pastas 
-            correr o comandos "npm run devstar"
+            correr o comandos "npm run devstart"
         </p>
       
     </abstract>
